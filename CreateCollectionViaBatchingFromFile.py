@@ -11,7 +11,7 @@ def initialize_client():
     """
     Initialize the Weaviate client.
     """
-    client = weaviate.connect_to_wcs(
+    client = weaviate.connect_to_weaviate_cloud(
         cluster_url=WEAVIATE_URL,
         auth_credentials=weaviate.auth.AuthApiKey(WEAVIATE_API_KEY),
         headers={"X-OpenAI-Api-Key": OPENAI_API_KEY}
