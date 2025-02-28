@@ -6,7 +6,7 @@ This repository contains code snippets for performing various operations on Weav
 
 ## Usage
 
-Each code snippet in this repository demonstrates a specific operation you can perform with Weaviate DB. You can find the snippets in the `snippets` directory, organized by functionality.
+Each code snippet in this repository demonstrates a specific operation you can perform with Weaviate DB. You can find the snippets in the directory, organized by functionality.
 
 ## Code Snippets
 

@@ -37,16 +37,6 @@ for collection_name in collections:
     dumped_collections[collection_name]["schema"] = client.collections.export_config(
         collection_name
     ).to_dict()
-    
-    try:
-        tenants = [ key for key in collection.tenants.get().keys() ]
-    except Exception as e:
-        # Check if the error is due to multi-tenancy being disabled
-        if "multi-tenancy is not enabled" in str(e):
-            print(
-                f"Collection '{collection_name}' does not have multi-tenancy enabled."
-            )
-            tenants = ["None"]
 
 # Get the path of the current script
 script_path = os.path.dirname(os.path.abspath(__file__))

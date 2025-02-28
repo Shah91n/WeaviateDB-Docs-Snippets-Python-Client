@@ -55,7 +55,7 @@ for collection_name, values in data.items():
         print(
             f"Collection {collection_name} does not exist. Creating its schema first."
         )
-        collection = client.collections.create_from_dict(values.get("schema", {}))
+        collection = client.collections.create_from_dict(values)
     else:
         collection = client.collections.get(collection_name)
 
