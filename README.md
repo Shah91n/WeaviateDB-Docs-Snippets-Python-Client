@@ -17,6 +17,8 @@ Each code snippet in this repository demonstrates a specific operation you can p
 - **Batch Operations**: Efficiently handle large datasets with batch operations.
 - **Read Repair**: Python scripts to trigger read repair operations.
 - **Schema Dump and Replication**: Scripts to dump schema from a source endpoint and replicate it to a new endpoint.
+- **Migration**: Scripts to migrate collections & data from a source endpoint to target endpoint.
+- **Weaviate Labs**: Embedding Services & Agent
 
 ## Contributing
 
