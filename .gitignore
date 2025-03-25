@@ -1,6 +1,8 @@
 # Customized
 TEST_*
 .ipynb_checkpoints/
+TODO
+local.config
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
