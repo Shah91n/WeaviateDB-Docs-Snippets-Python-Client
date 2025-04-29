@@ -2,27 +2,32 @@
 
 ## Overview
 
-This repository contains code snippets for performing various operations on Weaviate Vector DB using the Python client. These snippets are designed to help developers quickly understand and implement common tasks when working with Weaviate DB.
+This repository contains a comprehensive collection of code snippets and scripts for performing various operations on Weaviate Vector DB using the Python client. These examples are designed to help developers quickly understand and implement common and advanced tasks when working with Weaviate DB.
 
 ## Usage
 
-Each code snippet in this repository demonstrates a specific operation you can perform with Weaviate DB. You can find the snippets in the directory, organized by functionality.
+Each code snippet in this repository demonstrates a specific operation you can perform with Weaviate DB. The snippets are organized by functionality, making it easy to find and use the relevant examples for your use case.
 
-## Code Snippets
+## Code Snippets and Scripts
 
 - **Connecting to Weaviate DB**: Learn how to establish a connection to your Weaviate instance.
-- **Data Management**: Examples of creating, updating, and deleting data objects.
-- **Schema Management**: How to define and manage your data schema.
-- **Querying Data**: Perform various types of queries to retrieve data.
+- **Data Management**: Examples of creating, reading, updating, and deleting data objects.
+- **Schema Management**: How to define, update, and manage your data schema.
+- **Querying Data**: Perform various types of queries, including hybrid and vector-based searches, to retrieve data.
 - **Batch Operations**: Efficiently handle large datasets with batch operations.
-- **Read Repair**: Python scripts to trigger read repair operations.
+- **Read Repair**: Python scripts to trigger read repair operations for consistency.
 - **Schema Dump and Replication**: Scripts to dump schema from a source endpoint and replicate it to a new endpoint.
-- **Migration**: Scripts to migrate collections & data from a source endpoint to target endpoint.
-- **Weaviate Labs**: Embedding Services & Agent
+- **Migration**: Scripts to migrate collections and data from a source endpoint to a target endpoint.
+- **Embedding Services**: Examples of integrating embedding services with Weaviate.
+- **Agent and Automation**: Snippets to demonstrate agent-based operations and automation workflows.
+- **Sharding**: Examples of managing sharding configurations in Weaviate.
+- **Multi-Tenancy Operations**: Snippets to handle multi-tenancy scenarios in Weaviate.
+- **GraphQL Queries**: Snippets GraphQL query examples for interacting with Weaviate.
+- **Storage Calculation**: Script to calculate disk storage requirements for your Weaviate instance.
 
 ## Contributing
 
-We welcome contributions to improve and expand the code snippets in this repository, feel free to send PRs.
+We welcome contributions to improve and expand the code snippets and scripts in this repository. If you have ideas or examples to share, feel free to submit a pull request.
 
 ## License
 
