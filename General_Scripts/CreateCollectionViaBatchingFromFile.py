@@ -102,3 +102,4 @@ if __name__ == "__main__":
     create_collection(client, collection_name)
     # Perform batch upload
     batch_upload(client, CSV_FILE_PATH, collection_name)
+    
