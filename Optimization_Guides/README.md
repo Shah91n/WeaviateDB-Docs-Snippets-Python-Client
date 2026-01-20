@@ -11,6 +11,9 @@ Learn how to optimize inverted indexes in Weaviate for maximum performance and e
 - Best practices and common pitfalls
 - Real-world implementation examples
 
+### [Batching Optimization Guide](./Batching.md)
+Production checklist for ingesting 5M–100M objects on 3+ node clusters. Covers ingestion, sharding strategy compression, batching patterns, decision tree for bottlenecks, and troubleshooting cheats.
+
 ## 🎯 Purpose
 
 These guides are designed to help developers:
