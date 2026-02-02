@@ -14,6 +14,9 @@ Learn how to optimize inverted indexes in Weaviate for maximum performance and e
 ### [Batching Optimization Guide](./Batching.md)
 Production checklist for ingesting 5M–100M objects on 3+ node clusters. Covers ingestion, sharding strategy compression, batching patterns, decision tree for bottlenecks, and troubleshooting cheats.
 
+### [Query Agent Optimization Guide](./Query_Agent.md)
+Essential best practices for maximizing Query Agent performance. Covers schema design, data type precision, property management with `view_properties`, and performance optimization strategies for collections with 100+ properties.
+
 ## 🎯 Purpose
 
 These guides are designed to help developers:
