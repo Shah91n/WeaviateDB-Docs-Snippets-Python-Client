@@ -11,6 +11,9 @@ Learn how to optimize inverted indexes in Weaviate for maximum performance and e
 - Best practices and common pitfalls
 - Real-world implementation examples
 
+### [Vector Index Optimization Guide](./Vector_Index.md)
+Improve vector search performance by choosing the right index strategy, tuning HNSW, and configuring compression and environment variables for production readiness.
+
 ### [Batching Optimization Guide](./Batching.md)
 Production checklist for ingesting 5M–100M objects on 3+ node clusters. Covers ingestion, sharding strategy compression, batching patterns, decision tree for bottlenecks, and troubleshooting cheats.
 
