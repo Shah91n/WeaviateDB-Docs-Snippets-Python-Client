@@ -16,6 +16,19 @@ maintains a single persistent HTTP connection via httpx. Concurrent requests are
 handled via httpx's async capabilities and HTTP/2 multiplexing, not by a pool of
 connections.
 
+ARCHITECTURE:
+- One client instance per application lifetime
+- httpx (HTTP client) handles persistent connection via connection pooling at the HTTP layer
+- Concurrent requests are multiplexed over the single HTTP connection
+- Lazy initialization of async client on first use
+
+NETWORK CONSIDERATIONS:
+gRPC health checks may fail due to network latency, especially if the application
+region differs from the cluster region. In such cases:
+- Use skip_init_checks=True to bypass strict startup validation
+- gRPC will still function for actual data queries once connection is established
+- Recommended: Set skip_init_checks=True if App Region ≠ Cluster Region
+
 Usage:
     from weaviate_connection import get_weaviate_client
     
@@ -23,17 +36,17 @@ Usage:
     client = get_weaviate_client()
     
     # Use for queries (httpx handles concurrent HTTP requests)
-    result = client.collections.get("my_collection").query.fetch_objects()
+    result = client.collections.use("my_collection").query.fetch_objects()
     
     # Use for batch inserts (same client, same connection)
-    client.collections.get("my_collection").data.insert({"name": "example"})
+    client.collections.use("my_collection").data.insert({"name": "example"})
     
     # For async operations
     from weaviate_connection import get_async_weaviate_client
     
     async def some_async_function():
         client = await get_async_weaviate_client()
-        result = await client.collections.get("my_collection").query.fetch_objects()
+        result = await client.collections.use("my_collection").query.fetch_objects()
 
 Best Practices (per Weaviate docs):
     - Initialize once at application startup
@@ -71,7 +84,7 @@ class WeaviateConnectionManager:
 
     def __init__(self):
         """Initialize the singleton client connection."""
-        load_dotenv()
+        load_dotenv(ovverride=True)
         
         self._cluster_url = os.getenv("CLUSTER_URL")
         self._api_key = os.getenv("API_KEY")
@@ -207,7 +220,7 @@ def get_weaviate_client():
     
     Example:
         client = get_weaviate_client()
-        result = client.collections.get("products").query.fetch_objects()
+        result = client.collections.use("products").query.fetch_objects()
         # Client remains open for next request
     
     Returns:
@@ -231,7 +244,7 @@ async def get_async_weaviate_client():
     
     Example:
         client = await get_async_weaviate_client()
-        result = await client.collections.get("products").query.fetch_objects()
+        result = await client.collections.use("products").query.fetch_objects()
         # Client remains open for next request
     
     Returns:
@@ -282,7 +295,7 @@ if __name__ == "__main__":
     try:
         # Example: Check if connection is alive (if your client supports this)
         print("Client obtained successfully")
-        # result = client.collections.get("YourCollection").query.fetch_objects()
+        # result = client.collections.use("YourCollection").query.fetch_objects()
     except Exception as e:
         print(f"Error: {e}")
     
@@ -306,7 +319,7 @@ if __name__ == "__main__":
         # Example: Use async client
         try:
             print("Async client obtained successfully")
-            # result = await client.collections.get("YourCollection").query.fetch_objects()
+            # result = await client.collections.use("YourCollection").query.fetch_objects()
         except Exception as e:
             print(f"Error: {e}")
     

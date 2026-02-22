@@ -57,7 +57,7 @@ for collection_name, values in data.items():
         )
         collection = client.collections.create_from_dict(values)
     else:
-        collection = client.collections.get(collection_name)
+        collection = client.collections.use(collection_name)
 
     print(f"Collection {collection_name} loaded.")
 

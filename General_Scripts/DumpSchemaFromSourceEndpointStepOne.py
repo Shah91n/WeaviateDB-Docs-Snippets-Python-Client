@@ -31,7 +31,7 @@ dumped_collections = {}
 # Retrieve all collections from the cluster
 collections = client.collections.list_all()
 for collection_name in collections:
-    collection = client.collections.get(collection_name)
+    collection = client.collections.use(collection_name)
 
     dumped_collections[collection_name] = {}
     dumped_collections[collection_name]["schema"] = client.collections.export_config(

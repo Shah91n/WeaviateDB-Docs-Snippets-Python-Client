@@ -20,6 +20,9 @@ Production checklist for ingesting 5M–100M objects on 3+ node clusters. Covers
 ### [Query Agent Optimization Guide](./Query_Agent.md)
 Essential best practices for maximizing Query Agent performance. Covers schema design, data type precision, property management with `view_properties`, and performance optimization strategies for collections with 100+ properties.
 
+### [Multi-Tenancy Optimization Guide](./Multi_Tenancy.md)
+Architect, configure, and operate multi-tenant collections efficiently. Learn when to use multi-tenancy, manage tenant states for cost optimization, handle backups and data safety, enforce access control, and follow production best practices for scaling to millions of tenants.
+
 ## 🎯 Purpose
 
 These guides are designed to help developers:
