@@ -84,7 +84,7 @@ class WeaviateConnectionManager:
 
     def __init__(self):
         """Initialize the singleton client connection."""
-        load_dotenv(ovverride=True)
+        load_dotenv(override=True)
         
         self._cluster_url = os.getenv("CLUSTER_URL")
         self._api_key = os.getenv("API_KEY")
