@@ -2,7 +2,7 @@
 TEST_*
 .ipynb_checkpoints/
 TODO
-local.config
+*_weaviate_cli*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

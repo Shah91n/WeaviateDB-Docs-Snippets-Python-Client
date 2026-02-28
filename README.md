@@ -55,10 +55,10 @@ Production-ready implementations of Weaviate's advanced capabilities:
 - `RESTAPIs.ipynb` - Direct REST API examples
 - `RoleBasedAccessControl.ipynb` - RBAC implementation and authorization
 - `Shards.ipynb` - Shard management and configuration
-- `batching.ipynb` - High-performance batch ingestion patterns
-- `cluster.ipynb` - Multi-node cluster operations
-- `multi_tenancy.ipynb` - Multi-tenant architecture and operations
-- `named_vectors.ipynb` - Named vector fields and multi-vector storage
+- `Batching.ipynb` - High-performance batch ingestion patterns
+- `Cluster.ipynb` - Multi-node cluster operations
+- `Multi_Tenancy.ipynb` - Multi-tenant architecture and operations
+- `Named_Vectors.ipynb` - Named vector fields and multi-vector storage
 
 ## 📚 Optimization Guides
 
