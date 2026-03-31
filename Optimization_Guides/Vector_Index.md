@@ -47,7 +47,6 @@ Tuning HNSW is a balance between graph density (Recall) and traversal speed (Lat
 ### ❌ The Production DON'Ts
 
 - DON'T exceed `ef: 512` Causes massive latency penalties for negligible recall gains.
-- DON'T disable lazy loading for multi-tenant deployments: Only use `DISABLE_LAZY_LOAD_SHARDS=true` for single-tenant collections.
 
 ---
 
@@ -66,11 +65,14 @@ In production, rolling updates can cause search latency spikes if the new Pod ha
 
 | **Environment Variable** | **Recommended Value** | **Why it's Critical** |
 | --- | --- | --- |
-| `HNSW_STARTUP_WAIT_FOR_VECTOR_CACHE` | `true` | Forces Weaviate to wait until the vector cache is hot before marking the Pod as "Ready." |
-| `DISABLE_LAZY_LOAD_SHARDS` | `true` | For **multi-tenant** keep it `FALSE`  to reduce startup time. For **single-tenant** deployments where you can afford longer startup, set to `TRUE` so that everything is loaded before the node is considered ready. |
+| `HNSW_STARTUP_WAIT_FOR_VECTOR_CACHE` | Default behavior | In `v1.36.6+`, default behavior is optimized by Core and can be adjusted automatically when lazy shard loading is enabled for a collection. |
+| `PERSISTENCE_HNSW_DISABLE_SNAPSHOTS` | `false` | Snapshots capture a point-in-time state of the HNSW index to drastically reduce startup times. Instead of replaying the full commit log, Weaviate loads the snapshot and only replays the **delta** (changes since the last snapshot) |
 
-> Why this matters: A pod that is "up" but hasn't loaded its HNSW graph, leading massive latency spikes during restarts.
+> Why this matters: A pod that is "up" but hasn't loaded its HNSW graph, leading massive latency spikes during restarts. There are two complementary mechanisms for restart optimization: cache warming and HNSW Snapshots.
 > 
+- Snapshots trigger **on startup** or **periodically** based on configured intervals.
+- A 10M object index drops from **70+ seconds → ~5 seconds** startup (~10–15x faster).
+- If a snapshot fails to load, Weaviate **safely falls back** to full commit log replay.
 
 ---
 
@@ -78,9 +80,10 @@ In production, rolling updates can cause search latency spikes if the new Pod ha
 
 **Environment & Infrastructure:**
 
-- [ ]  **For Availability:** `HNSW_STARTUP_WAIT_FOR_VECTOR_CACHE=true` and `DISABLE_LAZY_LOAD_SHARDS=true` are active (single-tenant collections only).
+- [ ]  **For Availability:** From `v1.36.6+` Core auto-handles lazy shard loading per collection.
 - [ ]  **Persistence**: `PERSISTENCE_HNSW_MAX_LOG_SIZE=1024MiB` (or match HNSW graph size; adjust based on dataset).
-- [ ]  Global Defaults: `DEFAULT_QUANTIZATION RQ` (applies RQ compression to all new collections).
+- [ ]  **Global Defaults:** `DEFAULT_QUANTIZATION RQ` (applies RQ compression to all new collections).
+- [ ]  **Snapshots**: v1.36+ enabled by default. `PERSISTENCE_HNSW_DISABLE_SNAPSHOTS=false`
 
 HNSW Configuration:
 

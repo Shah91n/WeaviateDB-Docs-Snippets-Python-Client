@@ -23,6 +23,12 @@ Essential best practices for maximizing Query Agent performance. Covers schema d
 ### [Multi-Tenancy Optimization Guide](./Multi_Tenancy.md)
 Architect, configure, and operate multi-tenant collections efficiently. Learn when to use multi-tenancy, manage tenant states for cost optimization, handle backups and data safety, enforce access control, and follow production best practices for scaling to millions of tenants.
 
+### [Sharding Optimization Guide](./Sharding.md)
+Understand sharding architecture decisions, immutable shard-count rules, startup lazy-loading behavior in v1.36.6+, manual rebalancing controls, and production best practices for balanced clusters.
+
+### [Memory Optimization & Scaling Guide](./Memory.md)
+Learn practical strategies to size memory, control heap growth, and scale Weaviate safely. Covers Weaviate memory architecture, HNSW and vector cache sizing, the 1.5x rule, scaling triggers, and production checklists.
+
 ## 🎯 Purpose
 
 These guides are designed to help developers:

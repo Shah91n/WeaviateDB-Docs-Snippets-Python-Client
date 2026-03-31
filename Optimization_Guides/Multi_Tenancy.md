@@ -91,17 +91,7 @@ Use **RBAC or admin-list authorization** to control who can:
 
 ---
 
-## 5. Availability & Restart Optimization
-
-### Environment Variables
-
-| Variable | Recommended Value | Why It Matters |
-| --- | --- | --- |
-| `DISABLE_LAZY_LOAD_SHARDS` | `false` for multi-tenant | Keeps startup fast by loading shards on demand. |
-
----
-
-## 6. Recommended Vector Index Configuration with Multi-Tenancy
+## 5. Recommended Vector Index Configuration with Multi-Tenancy
 
 For multi-tenant collections, use the **dynamic vector index**. It starts as `flat` (disk-based) and automatically upgrades to `hnsw` once a tenant's shard crosses a size threshold (default: 10,000 objects).
 
@@ -127,7 +117,7 @@ Apply **RQ compression** (Rotational Quantization) to large tenants:
 
 ---
 
-## 7. How to Enable Multi-Tenancy
+## 6. How to Enable Multi-Tenancy
 
 ### Step 1 — Create the collection with multi-tenancy enabled
 
@@ -157,7 +147,7 @@ mt_collection.tenants.create(
 
 ---
 
-## 8. Production Checklist
+## 7. Production Checklist
 
 ### ✅ Production Do's
 
@@ -165,26 +155,24 @@ mt_collection.tenants.create(
 | --- | --- |
 | 1 | Use **dynamic vector index** for all multi-tenant collections |
 | 2 | Apply **RQ compression** (98–99% recall, 4x RAM reduction) |
-| 3 | Keep `DISABLE_LAZY_LOAD_SHARDS=false` for multi-tenant deployments |
-| 4 | Activate tenants before scheduled backups if their data must be included |
-| 5 | Use RBAC to enforce tenant-level access control in your auth layer |
-| 6 | Move less-active / idle tenants to `INACTIVE` or `OFFLOADED` to reduce RAM |
-| 7 | Document tenant state transitions and backup coverage for disaster recovery |
-| 8 | Monitor tenant state consistency across nodes during large-scale state transitions |
+| 3 | Activate tenants before scheduled backups if their data must be included |
+| 4 | Use RBAC to enforce tenant-level access control in your auth layer |
+| 5 | Move less-active / idle tenants to `INACTIVE` or `OFFLOADED` to reduce RAM |
+| 6 | Document tenant state transitions and backup coverage for disaster recovery |
+| 7 | Monitor tenant state consistency across nodes during large-scale state transitions |
 
 ### ❌ Production Don'ts
 
 | # | Pitfall | Why It's Dangerous |
 | --- | --- | --- |
-| 1 | **Don't set `DISABLE_LAZY_LOAD_SHARDS=true`** for multi-tenant | Causes extremely slow startup times when thousands (millions) of shards must be loaded. |
-| 2 | **Don't assume backups cover all tenants** | Only `ACTIVE` tenants are backed up — `INACTIVE` and `OFFLOADED` are silently excluded |
-| 3 | **Don't skip tenant state policies** | Without lifecycle management, all tenants default to `ACTIVE`, consuming full RAM indefinitely |
-| 4 | **Don't skip auth** | Storage isolation alone is not access control — always layer RBAC on top |
-| 5 | **Don't cross-query tenants** | Multi-tenancy is designed for isolation; cross-tenant queries defeat the purpose and violate isolation guarantees |
+| 1 | **Don't assume backups cover all tenants** | Only `ACTIVE` tenants are backed up — `INACTIVE` and `OFFLOADED` are silently excluded |
+| 2 | **Don't skip tenant state policies** | Without lifecycle management, all tenants default to `ACTIVE`, consuming full RAM indefinitely |
+| 3 | **Don't skip auth** | Storage isolation alone is not access control — always layer RBAC on top |
+| 4 | **Don't cross-query tenants** | Multi-tenancy is designed for isolation; cross-tenant queries defeat the purpose and violate isolation guarantees |
 
 ---
 
-## 9. Key Takeaways
+## 8. Key Takeaways
 
 ✨ **Multi-tenancy shines when:**
 - You manage 100+ logical datasets with identical schemas

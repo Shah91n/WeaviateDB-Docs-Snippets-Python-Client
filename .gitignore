@@ -3,6 +3,8 @@ TEST_*
 .ipynb_checkpoints/
 TODO
 *_weaviate_cli*
+.vscode/
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

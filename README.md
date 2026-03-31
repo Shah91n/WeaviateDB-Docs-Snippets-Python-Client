@@ -71,6 +71,8 @@ Comprehensive guides for optimizing Weaviate deployments:
 | [**Batching Optimization**](./Optimization_Guides/Batching.md) | Data Ingestion | Production patterns for 5M–100M object imports |
 | [**Query Agent Optimization**](./Optimization_Guides/Query_Agent.md) | Query Performance | Schema design, property management, large collections |
 | [**Multi-Tenancy Optimization**](./Optimization_Guides/Multi_Tenancy.md) | Architecture | Tenant state management, scaling to millions of tenants |
+| [**Sharding Optimization**](./Optimization_Guides/Sharding.md) | Distribution & Scale | Shard-count strategy, startup behavior, rebalance controls |
+| [**Memory Optimization & Scaling**](./Optimization_Guides/Memory.md) | Resource Planning | Heap sizing, 1.5x rule, scaling triggers, GOMEMLIMIT tuning |
 
 ## 📖 Documentation Structure
 
